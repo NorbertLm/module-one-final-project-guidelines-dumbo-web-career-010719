@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
     self.lists
   end
 
-  def new_movie(movie_name)
-    movie = Movie.find_or_create_by(name: movie_name)
+  def new_movie(movie_name, info = nil)
+    movie = Movie.find_or_create_by(name: movie_name, info: info)
     movie_list.find_or_create_by(user_id: self.id, movie_id: movie.id)
   end
 
