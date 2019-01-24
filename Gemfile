@@ -7,5 +7,5 @@ gem "pry"
 gem "require_all"
 gem 'rake'
 gem 'tty'
-
+gem 'dotenv'
 gem 'rest-client'

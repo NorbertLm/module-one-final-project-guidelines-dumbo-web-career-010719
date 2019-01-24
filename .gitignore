@@ -12,4 +12,6 @@ tmp
 
 db/*.db
 db/schema.rb
-db/seeds.rb
+
+#Ignore .env file
+/.env
