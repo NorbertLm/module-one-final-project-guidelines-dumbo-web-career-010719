@@ -98,9 +98,7 @@ def main_prompt_options(curr_user)
     prompt = TTY::Prompt.new
     options = [
         {"Show all movies" => -> do get_movie_list(curr_user) end},
-        # What Mo is working on ###################################
         {"Find Movies" => -> do find_movie_api(curr_user) end},
-        ###########################################################
         {"Add movie to most list" => -> do add_new_movie(curr_user) end},
         {"View movie info" => -> do view_movie_info(curr_user) end},
         {"Update movie list entry" => -> do update_movie_list_entry(curr_user) end},
@@ -157,7 +155,6 @@ end
 
  # Parse movie list and return an array of structured arrays for tty-table
 def parse_movie_list(movie_list)
-    #binding.pry
     movie_id = movie_list.map { |item| item.movie_id}
     movies = movie_id.map { |id| Movie.find(id)}
     movie_names = movies.map { |movie| movie.name}
@@ -177,17 +174,20 @@ def display_table(data)
     multi_renderer.render
 end
 
+ # Returns a list of movie names from movie_list 
 def movie_list_names(movie_list)
     movie_id = movie_list.map { |item| item.movie_id}
     movies = movie_id.map { |id| Movie.find(id)}
     movie_names = movies.map { |movie| movie.name}
 end
 
+ # Create prompt for movie list
 def movie_list_prompt(data)
     prompt = TTY::Prompt.new
     prompt.select("Select a movie", data)
 end
 
+ # Select and return movie
 def select_movie(curr_user)
     movie_list_prompt(movie_list_names(curr_user.movie_list))
 end
@@ -236,9 +236,6 @@ def find_genre(user)
 end
 
 def api_genre_selecter(gen, user)
-  # I deleted the database and redid the movies migration to include the info table.
-  # to run this on your computer, you will need to delete your database and schema and redo the migration
-  # I added a parameter in your User.new_movie method to include info
   prompt = TTY::Prompt.new
   puts Genre.genre[gen]
   page = 1
