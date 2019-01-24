@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   # Detroys movie entry in list based on movie name passed in
   def delete_movie_in_list(movie_name)
-    movie_list.destroy(movie_list.find(get_movie_id(movie_name)))
+    movie_list.destroy(movie_list.where(movie_id: get_movie_id(movie_name)))
   end
 
 end
