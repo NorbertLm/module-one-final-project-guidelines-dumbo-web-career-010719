@@ -11,7 +11,7 @@ ActiveRecord::Base.logger = nil
 ActiveSupport::Deprecation.silenced = true
 
 def command_line
-    prompts(welcome)
+    prompts(get_user)
 end
 
  # Welcome message and beggining of program
@@ -19,6 +19,11 @@ def welcome
     system "clear"
     puts "Hello Welcome to My Movie List"
     puts "What is your name?"
+    
+end
+
+#Get user name
+def get_user
     name = gets.chomp
     puts "Hello #{name}"
     return name
