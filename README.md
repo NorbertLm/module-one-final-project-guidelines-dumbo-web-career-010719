@@ -1,7 +1,6 @@
 # My Movie List
 
 ## About
-
 My Movie List is a command line cataloging application for movies.
 Users are able to add or delete movies to their catalog, add a rating, write comments, view movie information and log if the movie has been watched.
 Another feature allows the user to search for movies based on genres or popularity and add it to their catalog.
@@ -12,5 +11,7 @@ Api key and endpoint is accessed with the `dotenv` gem and loaded from a .env fi
 
 ## Usage
 `bundle install`
+
 `rake db:migrate`
+
 `ruby rub.rb`
