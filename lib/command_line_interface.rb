@@ -105,7 +105,7 @@ def main_prompt_options(curr_user)
         {"Delete movie from movie list" => -> do delete_movie_list_entry(curr_user) end},
         {"Exit" => -> do exit_line end}
     ]
-    prompt.select("", options)
+    prompt.select("", options, per_page: 10)
 end
 
  # ---------------------- Update operations ---------------------- #
@@ -184,7 +184,7 @@ end
  # Create prompt for movie list
 def movie_list_prompt(data)
     prompt = TTY::Prompt.new
-    prompt.select("Select a movie", data)
+    prompt.select("Select a movie", data, per_page: 10)
 end
 
  # Select and return movie
@@ -232,7 +232,7 @@ def find_genre(user)
     {"War" => -> do api_genre_selecter("War", user) end},
     {"Western" => -> do api_genre_selecter("Western", user) end}
   ]
-  prompt.select("Pick a genre?", options)
+  prompt.select("Pick a genre?", options, per_page: 10)
 end
 
 def api_genre_selecter(gen, user)
@@ -247,7 +247,7 @@ def api_genre_selecter(gen, user)
       genre_movies_title.push("BACK")
     end
     genre_movies_title.push("EXIT")
-    input = prompt.select("Choose a movie", genre_movies_title)
+    input = prompt.select("Choose a movie", genre_movies_title, per_page: 10)
     if input == "NEXT PAGE"
       page += 1
     elsif input == "EXIT"
@@ -272,7 +272,7 @@ def find_popularity(user)
       movies_title.push("BACK")
     end
     movies_title.push("EXIT")
-    input = prompt.select("Choose a movie", movies_title)
+    input = prompt.select("Choose a movie", movies_title, per_page: 10)
     if input == "NEXT PAGE"
       page += 1
     elsif input == "EXIT"
