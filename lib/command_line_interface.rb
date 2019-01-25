@@ -122,7 +122,7 @@ def main_prompt_options(curr_user)
 	options = [
 			{"Show all movies" => -> do get_movie_list(curr_user) end},
 			{"Find Movies" => -> do find_movie_api(curr_user) end},
-			{"Add movie to most list" => -> do add_new_movie(curr_user) end},
+			{"Add movie to movie list" => -> do add_new_movie(curr_user) end},
 			{"View movie info" => -> do view_movie_info(curr_user) end},
 			{"Update movie list entry" => -> do update_movie_list_entry(curr_user) end},
 			{"Delete movie from movie list" => -> do delete_movie_list_entry(curr_user) end},
@@ -174,13 +174,19 @@ end
 def update_exit
 	return false
 end
+
+ # Get all movie names from movie list entries
+def get_movie_names(movie_list)
+  movie_id = movie_list.map { |item| item.movie_id}
+	movies = movie_id.map { |id| Movie.find(id)}
+  movie_names = movies.map { |movie| movie.name}
+end
+
 # ---------------------- End of update operations  ---------------------- #
 
  # Parse movie list and return an array of structured arrays for tty-table
 def parse_movie_list(movie_list)
-	movie_id = movie_list.map { |item| item.movie_id}
-	movies = movie_id.map { |id| Movie.find(id)}
-	movie_names = movies.map { |movie| movie.name}
+	movie_names = get_movie_names(movie_list)
 	output = []
 
 	for i in 0...movie_names.size
@@ -237,7 +243,6 @@ end
 def find_movie_api(user)
   clear_text
 	prompt = TTY::Prompt.new
-	#prompt.ask "Do you want to find by genre or popularity?"
 	options = [
 			{"Genre" => -> do find_genre(user) end},
 			{"Popularity" => -> do find_popularity(user) end}
