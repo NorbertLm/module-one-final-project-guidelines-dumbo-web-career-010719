@@ -14,4 +14,4 @@ Api key and endpoint is accessed with the `dotenv` gem and loaded from a .env fi
 
 `rake db:migrate`
 
-`ruby rub.rb`
+`ruby run.rb`
