@@ -234,12 +234,6 @@ def nothing_to_show
 end
 
 #----------------------- API Methods---------------------------#
-#                                                              #
-#                                                              #
-# ________DEPENDENT ON SEEDS.RB WHICH IS IN GIT-IGNORE_________#
-#                                                              #
-#                                                              #
-#----------------------- API Methods---------------------------#
 def find_movie_api(user)
   clear_text
 	prompt = TTY::Prompt.new
